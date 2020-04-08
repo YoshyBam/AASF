@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             refresh_token: null
           }
           
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
 
         }
 

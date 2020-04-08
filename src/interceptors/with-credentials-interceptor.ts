@@ -22,8 +22,7 @@ export class WithCrededentialsInterceptor implements HttpInterceptor {
                     ContentType:'application/json; charset=utf-8',
                     'Cache-Control': 'no-cache',
                     Pragma: 'no-cache'
-                },
-                withCredentials: true
+                }
             });
         else
             request = request.clone({
@@ -32,8 +31,7 @@ export class WithCrededentialsInterceptor implements HttpInterceptor {
                     ContentType:'application/json; charset=utf-8',
                     'Cache-Control': 'no-cache',
                     Pragma: 'no-cache'
-                },
-                withCredentials: true
+                }
             });
 
             

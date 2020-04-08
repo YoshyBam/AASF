@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 //services
 import { authService } from 'src/app/services/auth.service';
@@ -31,7 +33,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   user_login_subscription: Subscription;
   user_create_subscription: Subscription;
 
-  constructor(private authService: authService) { }
+  constructor(private authService: authService, private readonly router: Router) { }
 
   ngOnInit() {
 
@@ -50,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.authService.user.access_token = res.access_token;
           this.authService.user.refresh_token = res.refresh_token;
           ///TODO
-          //route to some page
+          this.router.navigate(['/home']);
 
         }
 
