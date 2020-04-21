@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.component.html',
-  styleUrls: ['home.component.scss']
+  selector: 'app-sidenav',
+  templateUrl: 'sidenav.component.html',
+  styleUrls: ['sidenav.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class SidenavComponent implements OnInit, OnDestroy {
 
   constructor(private authService: authService, private readonly router: Router) { }
 

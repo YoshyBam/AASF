@@ -12,12 +12,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'full',
+        pathMatch: 'prefix',
+        loadChildren: () => import('./main/sidenav/sidenav.module').then(m => m.SidenavModule)
+      },
+      {
+        path: 'login',
         loadChildren: () => import('./main/login/login.module').then(m => m.LoginModule)
       },
       {
-        path: 'home',
-        loadChildren: () => import('./main/home/home.module').then(m => m.HomeModule)
+        path: '**',
+        redirectTo: ''
       }
     ]
   }

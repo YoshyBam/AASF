@@ -1,0 +1,149 @@
+@import "../../../assets/scss-library/colours.scss";
+
+
+.nav {
+    height: 100vh;
+}
+.sidenav {
+    width: 16rem;
+    // background-color: $space_cadet;
+    background-color: $stylish_dark_darker;
+    color: $cultured;
+    padding: 1rem;
+}
+
+.sidenav-aas {
+    cursor: pointer;
+    .sidenav-image {
+        display: block;
+        height: 4rem;
+        width: 30%;
+        margin-right: .5rem;
+
+        img {
+            width: 100%;
+            height: auto;
+            padding: .5rem;
+            
+            border-radius: 50%;
+
+            animation-name: smaller;
+            animation-duration: .2s;
+        }
+    }
+    h6 {
+        color: ivory;
+        font-weight: 600;
+    }
+    &:hover {
+        .sidenav-image {
+            img {
+                animation-name: bigger;
+                animation-duration: .4s;
+
+                width: 110%;
+            }
+        }
+    }
+    @keyframes bigger {
+        0% {
+            width: 100%;
+        }
+        100% {
+            width: 110%;
+        }
+    }
+    @keyframes smaller {
+        0% {
+            width: 110%;
+        }
+        100% {
+            width: 100%;
+        }
+    }
+}
+
+.dashboard {
+    padding: 2rem 0;
+
+    h6 {
+        cursor: pointer;
+        font-size: 1.5rem;
+        font-weight: 700;
+
+        .nav-icon {
+            color: $ivory;
+            font-size: 2rem;
+            padding-right: .5rem;
+        }
+    }
+    &:hover {
+        h6 {
+            color: $ivory;
+            .nav-icon {
+                color: $space_cadet;
+            } 
+        }
+    }
+    &:active {
+        h6 {
+            color: $space_cadet;
+            .nav-icon {
+                color: $space_cadet;
+            } 
+        }
+    }
+}
+.nav-navigation {
+    h6 {
+        cursor: pointer;
+        display: inline-flex;
+        font-size: 1.2rem;
+        font-weight: 700;
+
+        .nav-icon {
+            cursor: pointer;
+            color: $ivory;
+            display: inline-block;
+            height: 2rem;
+            width: 2rem;
+            font-size: 1.5rem;
+        }
+        h6 {
+            padding-left: .5rem;
+        }
+    }
+    &:hover {
+        h6 {
+            .nav-icon {
+                color: $space_cadet;
+            } 
+            h6 {
+                color: $ivory;
+            }
+        }
+    }
+    &:active {
+        h6 {
+            .nav-icon {
+                color: $space_cadet;
+            } 
+            h6 {
+                color: $space_cadet;
+            }
+        }
+    }
+}
+.nav-bottom {
+    position: absolute;
+    bottom: 0;
+
+    h6 {
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $cultured;
+        &:hover { color: $ivory; font-size: 1.15rem; letter-spacing: -0.025rem; }
+        &:active { color: $space_cadet; }
+    }
+}

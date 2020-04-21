@@ -3,31 +3,32 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 //routes
-import { HomeRoutingModule } from './home-routing.module';
+import { SidenavRoutingModule } from './sidenav-routing.module';
 
 //other
 
 //components
-import { HomeComponent } from './home.component';
+import { SidenavComponent } from './sidenav.component';
 
 //angular
+import { MatSidenavModule } from '@angular/material/sidenav';
  
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [ SidenavComponent ],
   imports: [
     //angular
     CommonModule,
     FormsModule,
 
     //routing
-    HomeRoutingModule,
+    SidenavRoutingModule,
 
     //materials
-    
+    MatSidenavModule
 
     //other
     
   ]
 })
-export class HomeModule { }
+export class SidenavModule { }
