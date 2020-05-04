@@ -1,0 +1,159 @@
+@import "../../../assets/scss-library/colours.scss";
+
+* {
+    color: $elegant_black;
+}
+input {
+    border: 2px solid $stylish_dark;
+    background-color: $subtle_white;
+    border-radius: 4px;
+    height: 2rem;
+
+    width: 80%;
+    max-width: 24rem;
+
+    font-weight: 600;
+    color: $xiketic;
+    padding: .25rem .5rem;
+    padding-left: 1.5rem;
+
+    &::placeholder {
+        color: $stylish_dark;
+    }
+
+    &:hover {
+        border: 2px solid $elegant_black;
+    }
+    &:focus {
+        border: 2px solid $space_cadet;
+    };
+
+}
+.input-icon {
+    position: relative;
+    margin-right: -1.45rem;
+}
+
+.class-card {
+    padding: .45rem 1.25rem;
+    
+    .class-encasing {
+
+        width: 90%;
+        border: 2px solid #0A1128;
+        background: linear-gradient(45deg, #0A1128 45%, $space_cadet 90%);
+        border-radius: 2px;
+        padding: .45rem .65rem;
+        cursor: pointer;
+
+        display: flex;
+
+        .title {
+            display: flex;
+            align-items: center;
+
+            width: 40%;
+
+            color: $cultured;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        .description {
+            display: flex;
+            align-items: center;
+
+            width: 40%;
+
+            color: $cultured;
+            font-weight: 600;
+            font-size: .95rem;
+        }
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            width: 20%;
+
+            .fa-edit {
+                color: $cultured;
+                &:hover { color: $xiketic !important; }
+                &:active { color: $xiketic;}
+            }
+            .fa-trash {
+                color: red;
+                &:hover { color: red;}
+                &:active { color: $xiketic !important; }
+            }
+            i {
+                font-weight: 600;
+                font-size: 1.2rem;
+
+                padding: 0 .75rem;
+            }
+        }
+
+        &:hover {
+            border: 2px solid $space_cadet;
+            background: linear-gradient(45deg, $cultured 75%, $space_cadet);
+            
+            .title { color: $xiketic; }
+            .description { color: $xiketic; }
+            .footer { 
+                .fa-edit {
+                    color: $cultured
+                }
+                .fa-trash {
+                    color: red
+                }
+            }
+        }
+        &:active {
+            border: 2px solid $space_cadet;
+            background: $cultured;
+
+            .title { color: $xiketic; }
+            .description { color: $xiketic; }
+            .footer { 
+                color: $xiketic; 
+                .fa-edit {
+                    color: $xiketic
+                }
+                .fa-trash {
+                    color: red
+                }
+            }
+        }
+    }
+
+}
+.add-class {
+    padding: .45rem 1.25rem;
+    
+    .add-class-encasing {
+        width: 90%;
+        border: 2px solid #0A1128;
+        background: white;
+        border-radius: 2px;
+        padding: .45rem .65rem;
+        cursor: pointer;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i {
+            font-size: 1.8rem;
+            color: $stylish_dark;
+        }
+        &:hover {
+            i {
+                color: $xiketic;
+            }
+        }
+        &:active {
+            i {
+                color: $space_cadet;
+            }
+        }
+    }
+}

@@ -16,6 +16,7 @@ import { OutletComponent } from './outlet/outlet.component';
 
 //services
 import { authService } from './services/auth.service';
+import { classService } from './services/subscribers/class.service';
 
 
 
@@ -40,7 +41,8 @@ import { authService } from './services/auth.service';
       useClass: WithCrededentialsInterceptor,
       multi: true
     },
-    authService
+    authService,
+    classService
   ],
   bootstrap: [AppComponent]
 })

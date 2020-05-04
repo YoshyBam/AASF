@@ -23,7 +23,6 @@ export class authService {
     }
 
     user_login(email: string, password: string) {
-        console.log(email, password);
         this.http.post(this.key + 'session', {
 
             email: email,

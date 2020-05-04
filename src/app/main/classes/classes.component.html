@@ -1,0 +1,39 @@
+<!-- header -->
+<div class="row" style="padding: 2.5rem 1rem">
+    <div class="col-7">
+        <h2 style="font-weight: 700;">CLASSES</h2>
+    </div>
+    <div class="col-5 d-flex justify-content-end align-items-center">
+        <i class="fas fa-search input-icon"></i>
+        <input type="text" placeholder="Search">
+    </div>
+</div>
+
+<!-- body -->
+<div class="row">
+
+    <div class="col-12 add-class d-flex justify-content-center align-items-center">
+        <div class="add-class-encasing" [routerLink]="['/classes/add']">
+            <i class="fas fa-plus"></i>
+        </div>
+    </div>
+
+    <div class="col-12 class-card d-flex justify-content-center align-items-center" *ngFor="let c of classes; let i = index" >
+        
+        <div class="class-encasing" (click)="classAction($event, i)">
+
+            <div class="title">P224 856</div>
+            <div class="description">A CLASS</div>
+            <div class="footer">
+                <i class="fas fa-edit" id="edit"></i>
+                <i class="fas fa-trash" id="delete"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- footer -->

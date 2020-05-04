@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.authService.user.access_token = res.access_token;
           this.authService.user.refresh_token = res.refresh_token;
           ///TODO
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
 
         }
 
