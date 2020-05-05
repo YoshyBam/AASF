@@ -25,6 +25,14 @@ export class ClassesComponent implements OnInit, OnDestroy{
         if(isNullOrUndefined(res.error)) {
 
           console.log(res);
+          this.classes = [
+            { "id": 0, "name": "P175054", "schedule": "Monday 13:30", "teacher_id": 0},
+            { "id": 0, "name": "P175055", "schedule": "Fryday 9AM", "teacher_id": 0},
+            { "id": 0, "name": "P175056", "schedule": "Monday 12PM", "teacher_id": 0},
+            { "id": 0, "name": "P175057", "schedule": "Thursday 10:30", "teacher_id": 0},
+            { "id": 0, "name": "P175058", "schedule": "Tuesday 2PM", "teacher_id": 0},
+            { "id": 0, "name": "P185064", "schedule": "Monday 4PM", "teacher_id": 0},
+          ]
 
         } else {
 
