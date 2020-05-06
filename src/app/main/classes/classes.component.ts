@@ -11,11 +11,15 @@ import { isNullOrUndefined } from 'util';
 })
 export class ClassesComponent implements OnInit, OnDestroy{
 
-  classes: Array<Class> = []
+  classes: Array<Class>
 
   getAllClassesSubscription: Subscription;
+  deleteClassSubscription: Subscription;
 
   constructor(private classService: classService) {
+    this.classes = new Array<Class>();
+    this.classService.getAllClasses();
+
   }
 
   ngOnInit() {
@@ -23,16 +27,8 @@ export class ClassesComponent implements OnInit, OnDestroy{
       next: (res) => {
 
         if(isNullOrUndefined(res.error)) {
-
-          console.log(res);
-          this.classes = [
-            { "id": 0, "name": "P175054", "schedule": "Monday 13:30", "teacher_id": 0},
-            { "id": 0, "name": "P175055", "schedule": "Fryday 9AM", "teacher_id": 0},
-            { "id": 0, "name": "P175056", "schedule": "Monday 12PM", "teacher_id": 0},
-            { "id": 0, "name": "P175057", "schedule": "Thursday 10:30", "teacher_id": 0},
-            { "id": 0, "name": "P175058", "schedule": "Tuesday 2PM", "teacher_id": 0},
-            { "id": 0, "name": "P185064", "schedule": "Monday 4PM", "teacher_id": 0},
-          ]
+          
+          this.classes = res;
 
         } else {
 
@@ -43,7 +39,18 @@ export class ClassesComponent implements OnInit, OnDestroy{
       }
     });
 
-    this.classService.getAllClasses();
+    this.deleteClassSubscription = this.classService.deleteClassSubject.subscribe({
+      next: (res) => {
+        if(isNullOrUndefined(res.error)) {
+          
+          this.classService.getAllClasses();
+          console.log(res);
+        } else {
+          console.log(res);
+        }
+      }
+    })
+
   }
   ngOnDestroy() {
     this.getAllClassesSubscription.unsubscribe();
@@ -58,7 +65,8 @@ export class ClassesComponent implements OnInit, OnDestroy{
         break;
 
       case "delete":
-        console.log("delete"); //TODO
+        this.hide_delete = false;
+        this.delete_this = i;
         break;
 
       default:
@@ -66,6 +74,27 @@ export class ClassesComponent implements OnInit, OnDestroy{
         break;
 
     }
+  }
+  
+
+  //for hiding the add branch component
+  hide_delete = true;
+  delete_this: number = null;
+  responseDialog(e: { close: boolean, output: string, index: number }) { 
+    this.hide_delete = e.close;
+    
+    if(e.output == "true") {
+      this.classService.deleteClass(this.classes[e.index].id);
+    }
+
+    this.hide_delete = e.close;
+    this.delete_this = null;
+
+  }
+
+  outsideDialog(e: { target: HTMLInputElement }) {
+    if(e.target.id == 'must-close')
+      this.hide_delete = true;
   }
 
 }

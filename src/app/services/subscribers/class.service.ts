@@ -10,6 +10,7 @@ export class classService {
 
     createClassSubject = new Subject<any>();
     getAllClassesSubject = new Subject<any>();
+    deleteClassSubject = new Subject<any>();
 
     constructor(private readonly auth: authService, private http: HttpClient) { }
 
@@ -28,6 +29,13 @@ export class classService {
             next: (res) => { this.getAllClassesSubject.next(<{}>res);},
             error: (e)  => { this.getAllClassesSubject.next(e); }
         })
+    }
+
+    deleteClass(id: number) {
+        this.http.delete(this.auth.key+"classes/"+id).subscribe({
+            next: (res) => { this.deleteClassSubject.next(res); },
+            error: (e)  => { this.deleteClassSubject.next(e); }
+        });
     }
 
 

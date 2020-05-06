@@ -9,6 +9,7 @@ import { SidenavRoutingModule } from './sidenav-routing.module';
 
 //components
 import { SidenavComponent } from './sidenav.component';
+import { RemoveDialogComponent } from '../dailogs/remove-dialog/remove-dialog.component';
 
 //angular
 import { MatSidenavModule } from '@angular/material/sidenav';

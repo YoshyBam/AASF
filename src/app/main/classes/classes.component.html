@@ -37,3 +37,9 @@
 
 
 <!-- footer -->
+
+
+<!-- dialogs -->
+<div class="custom-dialog" [ngClass]="{'d-none': hide_delete, 'd-flex': !hide_delete}" (click)="outsideDialog($event)" id="must-close">
+    <app-remove-dialog [i]="delete_this" (onHide)="responseDialog($event)"></app-remove-dialog>
+</div>

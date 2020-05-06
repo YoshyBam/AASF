@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/scss-library/colours.scss";
 * {
     font-family: 'Source Sans Pro', sans-serif;
     outline: none;
@@ -8,4 +9,37 @@ input:invalid {
 }
 input, button {
     outline: none;
+}
+
+.custom-dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999999;
+    overflow: hidden;
+
+    height: 100vh;
+    width: 100%;
+
+    background-color: rgba($color: $dark, $alpha: .2);
+}
+
+::-webkit-scrollbar {
+    width: .5rem;
+    height: .5rem;
+    background-color: #dddddd;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    /* background-color: rgb(118, 50, 63); */
+    background-color: $space_cadet;
+}
+::-webkit-scrollbar-track {
+    background-color: #dddddd;
+    border-radius: 25px;
 }
