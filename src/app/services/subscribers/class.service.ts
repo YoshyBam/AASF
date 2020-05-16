@@ -23,6 +23,7 @@ export class classService {
     
     getAllClassStudentsSubject = new Subject<any>();
     removeStudentsSubject = new Subject<any>();
+    addStudentSubject = new Subject<any>();
 
     constructor(private readonly auth: authService, private http: HttpClient) { }
 
@@ -42,7 +43,6 @@ export class classService {
             error: (e)  => { this.getAllClassesSubject.next(e); }
         })
     }
-
     getStudentClasses(student_id: number) {
         this.http.get(this.auth.key + "students/" + student_id + "/classes").subscribe({
             next: (res) => { this.getStudentClassesSubject.next(<Array<Class>>res); },
@@ -77,6 +77,19 @@ export class classService {
             next: (res) => { this.removeStudentsSubject.next(<Array<Student>>res); },
             error: (e)  => { this.removeStudentsSubject.next(e); }
         });
+    }
+    
+    addStudentsToClass(class_id: number, student_ids: Array<number>) {
+
+        this.http.post(this.auth.key + "classes/" + class_id + "/students", {
+
+            student_ids: student_ids
+
+        }).subscribe({
+            next: (res) => { this.addStudentSubject.next(<Array<Student>>res); },
+            error:  (e) => { this.addStudentSubject.next(e); }
+        });
+
     }
 
 

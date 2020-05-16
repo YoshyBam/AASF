@@ -32,52 +32,8 @@ export class StudentsComponent implements OnInit, OnDestroy {
       this.id = params['class'];
     });
 
-    // this.classService.getAllClassStudents(this.id);
-    this.students = new Array<any>(
-      {
-        id: 0,
-
-        email: "some@email.com",
-        name: "name",
-        surname: "surname",
-
-        academic_group_id: "IFU",
-        role: "student",
-        status: "status",
-
-        createdAt: Date,
-        updatedAt: Date
-      },
-      {
-        id: 12,
-
-        email: "some@email.com",
-        name: "name",
-        surname: "surname",
-
-        academic_group_id: "IFU",
-        role: "student",
-        status: "status",
-
-        createdAt: Date,
-        updatedAt: Date
-      },
-      {
-        id: 16,
-
-        email: "some@email.com",
-        name: "name",
-        surname: "surname",
-
-        academic_group_id: "IFU",
-        role: "student",
-        status: "status",
-
-        createdAt: Date,
-        updatedAt: Date
-      },
-    );
-    this.selectStudent = new Array<boolean>(false, false, false)
+    this.selectStudent = new Array<boolean>()
+    this.classService.getAllClassStudents(this.id);
   }
 
   ngOnInit() {
@@ -97,8 +53,10 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
         if(isNullOrUndefined(res.error)) {
 
+          this.selectStudent = new Array<boolean>();
           console.log(res);
           this.students = res;
+          res.forEach(r => this.selectStudent.push(false) );
 
         } else {
 

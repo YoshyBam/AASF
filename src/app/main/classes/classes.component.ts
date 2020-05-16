@@ -1,8 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { classService } from 'src/app/services/subscribers/class.service';
-import { Class } from 'src/app/models/class.interface';
 import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'util';
+import { Router } from '@angular/router';
+
+//services
+import { classService } from 'src/app/services/subscribers/class.service';
+
+//interfaces
+import { Class } from 'src/app/models/class.interface';
+
 
 @Component({
   selector: 'app-classes',
@@ -16,7 +22,7 @@ export class ClassesComponent implements OnInit, OnDestroy{
   getAllClassesSubscription: Subscription;
   deleteClassSubscription: Subscription;
 
-  constructor(private classService: classService) {
+  constructor(private classService: classService, public router: Router) {
     this.classes = new Array<Class>();
     this.classService.getAllClasses();
 
@@ -54,6 +60,7 @@ export class ClassesComponent implements OnInit, OnDestroy{
   }
   ngOnDestroy() {
     this.getAllClassesSubscription.unsubscribe();
+    this.deleteClassSubscription.unsubscribe();
   }
 
 
@@ -70,7 +77,7 @@ export class ClassesComponent implements OnInit, OnDestroy{
         break;
 
       default:
-        console.log("default"); //TODO
+        this.router.navigate(['/classes/single'], { queryParams: { class: this.classes[i].id }});
         break;
 
     }

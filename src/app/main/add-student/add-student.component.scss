@@ -1,0 +1,125 @@
+@import "../../../assets/scss-library/colours.scss";
+
+* {
+    color: $elegant_black;
+}
+button {
+    outline: none;
+
+    padding: .25rem .5rem;
+    border-radius: 2px;
+}
+input {
+
+    width: 100%;
+    
+
+    
+
+    border-radius: 4px;
+    border: 2px solid $stylish_dark;
+
+    &:hover {
+        border: 2px solid $xiketic;
+    }
+    &:focus {
+        border: 2px solid $space_cadet;
+    }
+    
+
+}
+.back-button {
+    border: 2px solid $xiketic;
+    background-color: $cultured;
+    color: $xiketic;
+
+    min-width: 6rem;
+    max-width: 90%;
+
+    font-weight: 600;
+
+    i {
+        color: $xiketic;
+        padding-right: .5rem;
+        font-size: .8rem;
+    }
+
+    &:hover {
+        border: 2px solid $space_cadet;
+    }
+
+}
+.input-border {
+    width: 100%;
+    max-width: 32rem;
+}
+.input-text {
+    padding-left: .1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.button-border {
+    padding-top: 1.8rem;
+    width: 100%;
+    max-width: 32rem;
+}
+.submit-button {
+    border: 2px solid $space_cadet;
+    background-color: $space_cadet;
+    color: $cultured;
+
+    min-width: 6rem;
+    width: 60%;
+    max-width: 90%;
+
+    font-weight: 600;
+
+    &:hover {
+        border: 2px solid $space_cadet;
+        background-color: $cultured;
+        color: $space_cadet;
+    }
+    &:active {
+        border: 2px solid $xiketic;
+        background-color: $cultured;
+        color: $xiketic;
+    }
+}
+
+select, option {
+    outline: none;
+}
+.form-group {
+    padding: 0;
+    margin: 0;
+}
+.form-control {
+    border-radius: 4px;
+    outline: none;
+
+    border-radius: 4px;
+    border: 2px solid $stylish_dark;
+
+    min-width: 24rem;
+    width: 100%;
+
+    padding: .25rem .5rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    
+    color: $stylish_dark;
+
+    &::placeholder {
+        color: rgba($color: $xiketic, $alpha: .5);
+        font-size: 1.35rem;
+        font-weight: 700;    
+    }
+    &:hover {
+        border: 2px solid $xiketic;
+    }
+    &:focus {
+        border: 2px solid $space_cadet;
+    }
+    
+}
+

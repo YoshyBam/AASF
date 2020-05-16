@@ -25,7 +25,7 @@
             </h6>
         </div>
         <div class="nav-navigation">
-            <h6>
+            <h6 [routerLink]="['/students']">
                 <i class="fas fa-user-graduate nav-icon" style="padding-left: 2px; font-size: 1.45rem;"></i>
                 <h6>Students</h6>
             </h6>
@@ -54,7 +54,7 @@
         </div>
 
     </mat-drawer>
-    <mat-drawer-content>
+    <mat-drawer-content style="overflow: hidden;">
         <router-outlet></router-outlet>
     </mat-drawer-content>
 

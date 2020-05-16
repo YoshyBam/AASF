@@ -6,8 +6,10 @@ import {
     HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { authService } from 'src/app/services/auth.service';
 import { isNullOrUndefined } from 'util';
+
+import { authService } from 'src/app/services/auth.service';
+
 @Injectable()
 export class WithCrededentialsInterceptor implements HttpInterceptor {
 
@@ -20,8 +22,6 @@ export class WithCrededentialsInterceptor implements HttpInterceptor {
             request = request.clone({
                 setHeaders: {
                     ContentType:'application/json; charset=utf-8',
-                    'Cache-Control': 'no-cache',
-                    Pragma: 'no-cache'
                 }
             });
         else
@@ -29,8 +29,6 @@ export class WithCrededentialsInterceptor implements HttpInterceptor {
                 setHeaders: {
                     'authorization': 'Bearer ' + this.authService.user.access_token,
                     ContentType:'application/json; charset=utf-8',
-                    'Cache-Control': 'no-cache',
-                    Pragma: 'no-cache'
                 }
             });
 

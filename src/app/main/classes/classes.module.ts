@@ -9,13 +9,15 @@ import { ClassesRoutingModule } from './classes-routing.module';
 
 //components
 import { ClassesComponent } from './classes.component';
-import { RemoveDialogComponent } from '../dailogs/remove-dialog/remove-dialog.component';
+
+//dialogs
+import { RemoveDialogModule } from '../dailogs/remove-dialog/remove-dialog.module';
 
 //angular
 
 
 @NgModule({
-  declarations: [ ClassesComponent, RemoveDialogComponent ],
+  declarations: [ ClassesComponent ],
   imports: [
     //angular
     CommonModule,
@@ -24,6 +26,9 @@ import { RemoveDialogComponent } from '../dailogs/remove-dialog/remove-dialog.co
 
     //routing
     ClassesRoutingModule,
+
+    //dialogs
+    RemoveDialogModule
     
     //materials
 

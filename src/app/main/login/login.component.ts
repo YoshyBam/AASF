@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 //services
 import { authService } from 'src/app/services/auth.service';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-login',
@@ -41,18 +42,23 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       next: (res) => {
 
-        if(res.error != null) {
+        if(isNullOrUndefined(res.error)) {
+          console.log(res);
+          this.authService.user.access_token = res.access_token;
+          this.authService.user.refresh_token = res.refresh_token;
+
+          console.log(this.authService.user);
+          
+          ///TODO
+          this.router.navigate(['/']);
+          
+
+        } else {
 
           ///TODO
           //handle error
           console.log("Error in Login:", res);
-
-        } else {
-
-          this.authService.user.access_token = res.access_token;
-          this.authService.user.refresh_token = res.refresh_token;
-          ///TODO
-          this.router.navigate(['/']);
+          
 
         }
 
