@@ -11,7 +11,6 @@ import { AddClassesRoutingModule } from './add-classes-routing.module';
 import { AddClassesComponent } from './add-classes.component';
 
 //angular
-import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -25,7 +24,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     AddClassesRoutingModule,
     
     //materials
-    MatDialogModule,
 
     //other
     
