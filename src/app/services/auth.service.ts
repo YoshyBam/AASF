@@ -37,7 +37,7 @@ export class authService {
 
     }
 
-    user_create(email: string, password: string, confirm_password: string, name: string, surname: string) {
+    user_create(email: string, password: string, confirm_password: string, name: string, surname: string, group: number) {
 
         this.http.post(this.key + 'users', {
 
@@ -45,7 +45,8 @@ export class authService {
             surname: surname,
             email: email,
             password: password,
-            confirm_password: confirm_password
+            confirm_password: confirm_password,
+            academic_group_id: group,
 
         }).subscribe({
 

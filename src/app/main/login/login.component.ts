@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { isNullOrUndefined } from 'util';
 
 
 //services
 import { authService } from 'src/app/services/auth.service';
-import { isNullOrUndefined } from 'util';
+import { studentService } from 'src/app/services/subscribers/student.service'
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   forgot_text: string = "Forgot password?";
   sign_up_text: string = "Sign up";
 
+  groupList: Array<{id: number, name: string}>
+
   user = {
+    group_index: null,
     name: null,
     surname: null,
     username: null,
@@ -34,7 +38,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   user_login_subscription: Subscription;
   user_create_subscription: Subscription;
 
-  constructor(private authService: authService, private readonly router: Router) { }
+  getGroupListSubscription: Subscription;
+
+  constructor(private authService: authService, private student: studentService, private readonly router: Router) {
+    this.groupList = new Array<{id: number, name: string}>();
+    this.student.getGroupList();
+  }
 
   ngOnInit() {
 
@@ -88,6 +97,22 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     });
 
+    this.getGroupListSubscription = this.student.getAcademicGroupListSubject.subscribe({
+      next: (res) => {
+
+        if(isNullOrUndefined(res.error)) {
+
+          this.groupList = res;
+
+        } else {
+
+          console.log(res);
+
+        }
+
+      }
+    })
+
   }
 
   ngOnDestroy() {
@@ -95,6 +120,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.user_login_subscription.unsubscribe();
     this.user_create_subscription.unsubscribe();
 
+  }
+
+  validator() {
+    if(this.user.group_index != null && this.user.group_index.toString() == "null") this.user.group_index = null;
   }
 
   //paths actions taken by login button
@@ -107,7 +136,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     } else if(this.sign_up) {
 
-      this.authService.user_create(this.user.username, this.user.password, this.user.confirm_password, this.user.name, this.user.surname);
+      this.authService.user_create(this.user.username, this.user.password, this.user.confirm_password, this.user.name, this.user.surname, this.groupList[this.user.group_index].id);
 
     } else {
 

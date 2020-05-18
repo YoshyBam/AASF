@@ -9,6 +9,12 @@
 
         </div>
         <div class="col-12 d-flex justify-content-center" *ngIf="sign_up">
+          <select class="form-control shadow-none" [(ngModel)]="user.group_index" (change)="validator()">
+              <option [value]="null">None</option>
+              <option *ngFor="let g of groupList; let i = index" [value]="i">{{ groupList[i].name }}</option>
+          </select>
+        </div>
+        <div class="col-12 d-flex justify-content-center" *ngIf="sign_up">
           <input type="text" placeholder="name" [(ngModel)]="user.name">
         </div>
         <div class="col-12 d-flex justify-content-center" *ngIf="sign_up">

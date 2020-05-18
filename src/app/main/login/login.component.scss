@@ -1,9 +1,4 @@
-
-$blue: #4b9ec1;
-$dark_green: #466365;
-$light_green: #acfcd9;
-$purple: #b084cc;
-$pink: #eb4886;
+@import "../../../assets/scss-library/colours.scss";
 
 
 
@@ -77,6 +72,51 @@ $pink: #eb4886;
         }
     }
 
+    .form-group {
+        padding: 0;
+        margin: 0;
+    }
+    .form-control {
+        width: 80%;
+        font-size: 1.25em;
+        padding: 2px 5px;
+        border: 2px solid white;
+        text-align: center;
+        background-color: transparent;
+        box-shadow: inset 0 0 0px 2px rgba($color: white, $alpha: 1);
+        color: white;
+
+
+        border-radius: 4px;
+
+        option {
+            color: $elegant_black;
+        }
+
+        &::placeholder {
+
+            color: white
+
+        }
+
+        &:focus {
+
+            &::placeholder {
+
+                color: rgba($color: white, $alpha: .8);
+
+            }
+
+            animation-name: select-cover;
+            animation-duration: .8s;
+
+            border: 2px solid #cdcdcd;
+            color: rgba($color: white, $alpha: .8);
+
+        }
+        
+    }
+
     .login-shadow {
         width: 40%;
         max-width: 150px;
@@ -121,6 +161,7 @@ $pink: #eb4886;
     }
 
 }
+
 .disapear {
     animation-name: disapear;
     animation-duration: .4s;
@@ -129,6 +170,7 @@ $pink: #eb4886;
     opacity: 0;
     height: 0;
 }
+
 @keyframes disapear {
 
     0% {
@@ -155,6 +197,19 @@ $pink: #eb4886;
     }
     100% {
         box-shadow: inset 0 0 0px 2px rgba($color: #cdcdcd, $alpha: .8);
+        color: rgba($color: white, $alpha: .8);
+    }
+}
+
+@keyframes select-cover {
+    0% {
+        border: 2px solid white;
+        color: white;
+
+        
+    }
+    100% {
+        border: 2px solid #cdcdcd;
         color: rgba($color: white, $alpha: .8);
     }
 }
