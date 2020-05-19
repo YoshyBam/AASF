@@ -52,11 +52,18 @@ export class LoginComponent implements OnInit, OnDestroy {
       next: (res) => {
 
         if(isNullOrUndefined(res.error)) {
-          console.log(res);
-          this.authService.user.access_token = res.access_token;
-          this.authService.user.refresh_token = res.refresh_token;
 
-          console.log(this.authService.user);
+          this.authService.access_token = res.tokens.access_token;
+          this.authService.refresh_token = res.tokens.refresh_token;
+          localStorage.setItem('accessToken', res.tokens.access_token.toString());
+          localStorage.setItem('refreshToken', res.tokens.refresh_token.toString());
+          this.authService.user = {
+            academic_group_id: res.user.academic_group_id,
+            name: res.user.name,
+            surname: res.user.surname,
+            role: res.user.role,
+          };
+          
           
           ///TODO
           this.router.navigate(['/']);
@@ -111,7 +118,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
 
       }
-    })
+    });
 
   }
 
@@ -122,9 +129,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   }
 
-  validator() {
-    if(this.user.group_index != null && this.user.group_index.toString() == "null") this.user.group_index = null;
-  }
+  validator() { if(this.user.group_index != null && this.user.group_index.toString() == "null") this.user.group_index = null; }
 
   //paths actions taken by login button
   gate() {

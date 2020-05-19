@@ -2,17 +2,21 @@ import { Injectable } from "@angular/core";
 
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { User } from '../models/user.interface';
 
 @Injectable()
 export class authService {
     
     public key = "http://dodgers-aas.herokuapp.com/api/v1/";
 
-    public user: User = {
-        username: null,
-        access_token: null,
-        refresh_token: null
-    };
+    access_token: null;
+    refresh_token: null;
+    user: User = {
+        academic_group_id: null,
+        name: null,
+        surname: null,
+        role: null
+    }
 
     user_login_subject  = new Subject<any>();
     user_create_subject = new Subject<any>();
@@ -71,9 +75,4 @@ export class authService {
 
 
 
-}
-interface User {
-    username: string,
-    access_token: string,
-    refresh_token: string,
 }

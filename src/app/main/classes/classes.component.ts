@@ -20,16 +20,52 @@ export class ClassesComponent implements OnInit, OnDestroy{
   classes: Array<Class>
 
   getAllClassesSubscription: Subscription;
+  getTeacherClassesSubscription: Subscription;
+  getStudentClassesSubscription: Subscription;
   deleteClassSubscription: Subscription;
 
   constructor(private classService: classService, public router: Router) {
     this.classes = new Array<Class>();
-    this.classService.getAllClasses();
+
+
 
   }
 
   ngOnInit() {
+
     this.getAllClassesSubscription = this.classService.getAllClassesSubject.subscribe({
+      next: (res) => {
+
+        if(isNullOrUndefined(res.error)) {
+          
+          this.classes = res;
+
+        } else {
+
+          console.log(res);
+
+        }
+
+      }
+    });
+
+    this.getTeacherClassesSubscription = this.classService.getTeacherClassesSubject.subscribe({
+      next: (res) => {
+
+        if(isNullOrUndefined(res.error)) {
+          
+          this.classes = res;
+
+        } else {
+
+          console.log(res);
+
+        }
+
+      }
+    });
+
+    this.getStudentClassesSubscription = this.classService.getTeacherClassesSubject.subscribe({
       next: (res) => {
 
         if(isNullOrUndefined(res.error)) {
@@ -55,7 +91,8 @@ export class ClassesComponent implements OnInit, OnDestroy{
           console.log(res);
         }
       }
-    })
+    });
+    
 
   }
   ngOnDestroy() {

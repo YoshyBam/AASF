@@ -18,7 +18,7 @@ export class WithCrededentialsInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        if(isNullOrUndefined(this.authService.user.access_token))
+        if(isNullOrUndefined(this.authService.access_token))
             request = request.clone({
                 setHeaders: {
                     ContentType:'application/json; charset=utf-8',
@@ -27,7 +27,7 @@ export class WithCrededentialsInterceptor implements HttpInterceptor {
         else
             request = request.clone({
                 setHeaders: {
-                    'authorization': 'Bearer ' + this.authService.user.access_token,
+                    'authorization': 'Bearer ' + this.authService.access_token,
                     ContentType:'application/json; charset=utf-8',
                 }
             });
