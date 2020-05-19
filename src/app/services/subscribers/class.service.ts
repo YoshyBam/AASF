@@ -49,8 +49,9 @@ export class classService {
             error:  (e) => { this.getStudentClassesSubject.next(e); }
         });
     }
+
     getTeacherClasses(teacher_id: number) {
-        this.http.get(this.auth.key + "students/" + teacher_id + "/classes").subscribe({
+        this.http.get(this.auth.key + "teachers/" + teacher_id + "/classes").subscribe({
             next: (res) => { this.getTeacherClassesSubject.next(<Array<Class>>res); },
             error:  (e) => { this.getTeacherClassesSubject.next(e); }
         });

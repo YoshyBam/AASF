@@ -37,12 +37,21 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   user_login_subscription: Subscription;
   user_create_subscription: Subscription;
+  refreshSessionSubscription: Subscription;
 
   getGroupListSubscription: Subscription;
 
+  timer
+
   constructor(private authService: authService, private student: studentService, private readonly router: Router) {
+
+    let token = localStorage.getItem('refreshToken');
+    if(!isNullOrUndefined(token))
+      this.timer = setInterval(() => this.authService.refreshSession(token), 5 * 60 * 1000);
+
     this.groupList = new Array<{id: number, name: string}>();
     this.student.getGroupList();
+
   }
 
   ngOnInit() {
@@ -58,12 +67,13 @@ export class LoginComponent implements OnInit, OnDestroy {
           localStorage.setItem('accessToken', res.tokens.access_token.toString());
           localStorage.setItem('refreshToken', res.tokens.refresh_token.toString());
           this.authService.user = {
+            id: res.user.id,
             academic_group_id: res.user.academic_group_id,
             name: res.user.name,
             surname: res.user.surname,
             role: res.user.role,
           };
-          
+          console.log(res);
           
           ///TODO
           this.router.navigate(['/']);
@@ -120,13 +130,46 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     });
 
+    this.refreshSessionSubscription = this.authService.refreshSessionSubject.subscribe({
+      next: (res) => {
+
+        if(isNullOrUndefined(res.error)) {
+
+          console.log(res);
+
+          this.authService.access_token = res.tokens.access_token;
+          this.authService.refresh_token = res.tokens.refresh_token;
+          localStorage.setItem('accessToken', res.tokens.access_token.toString());
+          localStorage.setItem('refreshToken', res.tokens.refresh_token.toString());
+          this.authService.user = {
+            id: res.user.id,
+            academic_group_id: res.user.academic_group_id,
+            name: res.user.name,
+            surname: res.user.surname,
+            role: res.user.role,
+          };
+
+        } else {
+
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+
+          this.router.navigate(['/login'])
+
+        }
+
+      }
+    });
+
   }
 
   ngOnDestroy() {
 
+    clearInterval(this.timer);
     this.user_login_subscription.unsubscribe();
     this.user_create_subscription.unsubscribe();
-
+    this.getGroupListSubscription.unsubscribe();
+    this.refreshSessionSubscription.unsubscribe();
   }
 
   validator() { if(this.user.group_index != null && this.user.group_index.toString() == "null") this.user.group_index = null; }

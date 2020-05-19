@@ -24,7 +24,7 @@
 
             <div class="title">{{ c.name }}</div>
             <div class="description">{{ c.schedule }}</div>
-            <div class="footer">
+            <div class="footer" *ngIf="show_actions">
                 <i class="fas fa-edit" id="edit"></i>
                 <i class="fas fa-trash" id="delete"></i>
             </div>

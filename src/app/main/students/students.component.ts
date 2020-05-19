@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'util';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 //services
 import { classService } from 'src/app/services/subscribers/class.service';
 
 ///interfaces
 import { Student } from 'src/app/models/students.interface';
+import { authService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -26,14 +27,24 @@ export class StudentsComponent implements OnInit, OnDestroy {
   getAllStudentsSubscription: Subscription;
 
 
-  constructor(private classService: classService, private route: ActivatedRoute) {
+  constructor(private auth: authService, private classService: classService, private route: ActivatedRoute, private router: Router) {
 
     this.route.queryParams.subscribe(params => {
       this.id = params['class'];
     });
 
     this.selectStudent = new Array<boolean>()
-    this.classService.getAllClassStudents(this.id);
+    switch(this.auth.user.role) {
+      case "admin" :
+        this.classService.getAllClassStudents(this.id);
+        break;
+      case "teacher" :
+        this.classService.getAllClassStudents(this.id);
+        break;
+      default :
+        this.router.navigate(['/']);
+    }
+    
   }
 
   ngOnInit() {
@@ -41,7 +52,9 @@ export class StudentsComponent implements OnInit, OnDestroy {
     this.deleteStudentsSubscription = this.classService.removeStudentsSubject.subscribe({
       next: (res) => {
         if(isNullOrUndefined(res.error)) {
-          console.log(res);
+        
+          this.classService.getAllClassStudents(this.id);
+
         } else {
           console.log(res);
         }
@@ -69,8 +82,10 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   }
   ngOnDestroy() {
-    this.deleteStudentsSubscription.unsubscribe();
-    this.getAllStudentsSubscription.unsubscribe();
+    if(this.deleteStudentsSubscription)
+      this.deleteStudentsSubscription.unsubscribe();
+    if(this.getAllStudentsSubscription)
+      this.getAllStudentsSubscription.unsubscribe();
   }
 
   deleteStudents() {
@@ -81,6 +96,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
         this.delete_this.push(this.students[i].id);
     this.hide_delete = false;
 
+    console.log("delete", this.delete_this);
 
   }
   
@@ -95,9 +111,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
     if(e.output == "true") {
       let ids = new Array<number>();
 
-      e.index.forEach(i => {
-        ids.push(this.students[i].id);
-      });
+      e.index.forEach(i => ids.push(i));
 
       this.classService.removeStudents(this.id, ids);
     }

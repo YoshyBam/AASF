@@ -12,6 +12,7 @@ export class authService {
     access_token: null;
     refresh_token: null;
     user: User = {
+        id: null,
         academic_group_id: null,
         name: null,
         surname: null,
@@ -21,6 +22,8 @@ export class authService {
     user_login_subject  = new Subject<any>();
     user_create_subject = new Subject<any>();
     user_logout_subject = new Subject<any>(); 
+
+    refreshSessionSubject = new Subject<any>();
 
     constructor(private http: HttpClient) {
 
@@ -34,7 +37,7 @@ export class authService {
 
         }).subscribe({
 
-            next: (res) => { this.user_login_subject.next(<{ access_token: string, refresh_token: string }>res); },
+            next: (res) => { this.user_login_subject.next(<{ tokens: { access_token: string, refresh_token: string }, user: User }>res); },
             error: (e)  => { this.user_login_subject.next(e); }
 
         });
@@ -68,6 +71,21 @@ export class authService {
 
             next: (res) => { this.user_logout_subject.next(res); },
             error: (e)  => { this.user_logout_subject.next(e); }
+
+        });
+
+    }
+
+    refreshSession(token: string) {
+
+        this.http.post(this.key + "session/refresh", {
+
+            refresh_token: token
+
+        }).subscribe( {
+
+            next: (res) => { this.refreshSessionSubject.next(<{ tokens: { access_token: string, refresh_token: string }, user: User }>res) },
+            error:  (e) => { this.refreshSessionSubject.next(e); }
 
         });
 

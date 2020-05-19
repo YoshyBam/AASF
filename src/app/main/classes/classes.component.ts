@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 //services
 import { classService } from 'src/app/services/subscribers/class.service';
+import { authService } from 'src/app/services/auth.service';
 
 //interfaces
 import { Class } from 'src/app/models/class.interface';
@@ -24,12 +25,32 @@ export class ClassesComponent implements OnInit, OnDestroy{
   getStudentClassesSubscription: Subscription;
   deleteClassSubscription: Subscription;
 
-  constructor(private classService: classService, public router: Router) {
+
+  show_actions: boolean = false;
+  
+  constructor(private auth: authService, private classService: classService, public router: Router) {
     this.classes = new Array<Class>();
 
-
+    switch(this.auth.user.role) {
+      case "student" : 
+        this.classService.getStudentClasses(this.auth.user.id);
+        break;
+      case "teacher" : 
+        this.show_actions = true;
+        this.classService.getTeacherClasses(this.auth.user.id);
+        break;
+      case "admin" : 
+        this.show_actions = true;
+        this.classService.getAllClasses();
+        break;
+      default : 
+        this.router.navigate(['/login']);
+        break;
+    }
 
   }
+
+  
 
   ngOnInit() {
 
@@ -92,11 +113,13 @@ export class ClassesComponent implements OnInit, OnDestroy{
         }
       }
     });
-    
+
 
   }
   ngOnDestroy() {
     this.getAllClassesSubscription.unsubscribe();
+    this.getTeacherClassesSubscription.unsubscribe();
+    this.getStudentClassesSubscription.unsubscribe();
     this.deleteClassSubscription.unsubscribe();
   }
 
@@ -114,7 +137,22 @@ export class ClassesComponent implements OnInit, OnDestroy{
         break;
 
       default:
-        this.router.navigate(['/classes/single'], { queryParams: { class: this.classes[i].id }});
+        switch(this.auth.user.role) {
+          case "student" : 
+            ///ROUTE to student page
+            break;
+          case "teacher" : 
+            this.router.navigate(['/classes/single'], { queryParams: { class: this.classes[i].id }});
+            break;
+          case "admin" : 
+            this.router.navigate(['/classes/single'], { queryParams: { class: this.classes[i].id }});
+            break;
+          default : 
+            this.router.navigate(['/login']);
+            break;
+        }
+
+        
         break;
 
     }
