@@ -9,17 +9,6 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
   constructor(public auth: authService, private router: Router) {
-
-    switch(this.auth.user.role) {
-      case "student" : 
-        break;
-      case "teacher" : 
-        break;
-      case "admin" : 
-        break;
-      default : 
-        this.router.navigate(['/login']);
-        break;
-    }
+    
   }
 }

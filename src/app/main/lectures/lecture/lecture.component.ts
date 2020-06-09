@@ -43,9 +43,6 @@ export class LectureComponent implements OnInit, OnDestroy {
         this.show_actions = true;
         setTimeout( () => this.lectureService.getLectures(this.classID), 0);
         break;
-      default : 
-        this.router.navigate(['/login']);
-        break;
     }
 
     

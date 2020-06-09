@@ -44,7 +44,6 @@ export class ClassesComponent implements OnInit, OnDestroy{
         this.classService.getAllClasses();
         break;
       default : 
-        this.router.navigate(['/login']);
         break;
     }
 

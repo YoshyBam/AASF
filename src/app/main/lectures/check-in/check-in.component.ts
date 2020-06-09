@@ -34,9 +34,6 @@ export class CheckInComponent implements OnInit, OnDestroy{
         break;
       case "admin" : 
         break;
-      default : 
-        this.router.navigate(['/login']);
-        break;
     }
   }
 

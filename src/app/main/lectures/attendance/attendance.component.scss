@@ -1,0 +1,259 @@
+@import "../../../../assets/scss-library/colours.scss";
+
+* {
+    color: $elegant_black;
+}
+input {
+    border: 2px solid $stylish_dark;
+    background-color: $subtle_white;
+    border-radius: 4px;
+    height: 2rem;
+
+    width: 80%;
+    max-width: 24rem;
+
+    font-weight: 600;
+    color: $xiketic;
+    padding: .25rem .5rem;
+    padding-left: 1.5rem;
+
+    &::placeholder {
+        color: $stylish_dark;
+    }
+
+    &:hover {
+        border: 2px solid $elegant_black;
+    }
+    &:focus {
+        border: 2px solid $space_cadet;
+    };
+
+}
+.input-icon {
+    position: relative;
+    margin-right: -1.45rem;
+}
+
+.delete-students {
+    padding: 0.35rem 0.4rem;
+    font-size: 1.5rem;
+    color: $cultured;
+    background-color: #0A1128;
+    border: 2px solid #0A1128;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        color: $space_cadet;
+        background-color: $cultured;
+        border: 2px solid $space_cadet;
+    }
+    &:active {
+        color: $xiketic;
+        background-color: $cultured;
+        border: 2px solid $xiketic;
+    }
+}
+.delete-students-inactive {
+    padding: 0.35rem 0.4rem;
+    font-size: 1.5rem;
+    color: white;
+    background-color: rgba($color: #0A1128, $alpha: .5);
+    border: 2px solid rgba($color: #0A1128, $alpha: .2);
+    border-radius: 4px;
+}
+
+.class-card {
+    padding: .45rem 1.25rem;
+    
+    .class-encasing {
+
+        width: 90%;
+        border: 2px solid #0A1128;
+        background: linear-gradient(45deg, $cadet 45%, $space_cadet 90%);
+        border-radius: 2px;
+        padding: .45rem .65rem;
+        cursor: pointer;
+
+        display: flex;
+
+        .title {
+            display: flex;
+            align-items: center;
+
+            width: 40%;
+
+            color: $cultured;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        .description {
+            display: flex;
+            align-items: center;
+
+            width: 40%;
+
+            color: $cultured;
+            font-weight: 600;
+            font-size: .95rem;
+        }
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            width: 20%;
+
+            .fa-edit {
+                color: $cultured;
+                &:hover { color: $xiketic !important; }
+                &:active { color: $xiketic;}
+            }
+            .fa-trash {
+                color: red;
+                &:hover { color: red;}
+                &:active { color: $xiketic !important; }
+            }
+            i {
+                font-weight: 600;
+                font-size: 1.2rem;
+
+                padding: 0 .75rem;
+            }
+        }
+
+        &:hover {
+            border: 2px solid $space_cadet;
+            background: linear-gradient(45deg, $cultured 75%, $space_cadet);
+            
+            .title { color: $xiketic; }
+            .description { color: $xiketic; }
+            .footer { 
+                .fa-edit {
+                    color: $cultured
+                }
+                .fa-trash {
+                    color: red
+                }
+            }
+        }
+        &:active {
+            border: 2px solid $space_cadet;
+            background: $cultured;
+
+            .title { color: $xiketic; }
+            .description { color: $xiketic; }
+            .footer { 
+                color: $xiketic; 
+                .fa-edit {
+                    color: $xiketic
+                }
+                .fa-trash {
+                    color: red
+                }
+            }
+        }
+    }
+
+}
+.add-class {
+    padding: .45rem 1.25rem;
+    
+    .add-class-encasing {
+        width: 90%;
+        border: 2px solid #0A1128;
+        background: white;
+        border-radius: 2px;
+        padding: .45rem .65rem;
+        cursor: pointer;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i {
+            font-size: 1.8rem;
+            color: $stylish_dark;
+        }
+        &:hover {
+            i {
+                color: $xiketic;
+            }
+        }
+        &:active {
+            i {
+                color: $space_cadet;
+            }
+        }
+    }
+}
+
+/* Customize the label (the container) */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.1rem;
+    width: 1.1rem;
+    background-color: #eee;
+    border: 1px solid #0A1128;
+    border-radius: 2px;
+    margin-bottom: .5rem;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: $space_cadet;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 0.28rem;
+    top: 0.15rem;
+    width: .35rem;
+    height: .5rem;
+    border: solid $cultured;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }

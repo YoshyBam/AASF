@@ -31,18 +31,6 @@ export class StartLectureComponent implements OnInit, OnDestroy{
       this.classID = params['class'];
     });
 
-    // switch(this.auth.user.role) {
-    //   case "student" : 
-    //     break;
-    //   case "teacher" : 
-    //     break;
-    //   case "admin" : 
-    //     break;
-    //   default : 
-    //     this.router.navigate(['/login']);
-    //     break;
-    // }
-
   }
 
   ngOnInit() {

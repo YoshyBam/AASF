@@ -18,8 +18,14 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
 
     let token = localStorage.getItem('refreshToken');
-    if(!isNullOrUndefined(token))
+    
+    if(!isNullOrUndefined(token)) {
+      if(isNullOrUndefined(this.authService.user.role))
+        this.authService.refreshSession(token);
       this.timer = setInterval(() => this.authService.refreshSession(token), 5 * 60 * 1000);
+    }
+
+    
 
   } 
 
