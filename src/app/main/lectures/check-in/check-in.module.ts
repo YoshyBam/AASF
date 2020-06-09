@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 //routes
+
 //other
+
 
 //components
 import { CheckInComponent } from './check-in.component';
 import { CheckInRoutingModule } from './check-in-routing.module';
 
 //angular
+
 
 
 @NgModule({
@@ -25,7 +28,6 @@ import { CheckInRoutingModule } from './check-in-routing.module';
     //materials
 
     //other
-    
   ]
 })
 export class CheckInModule { }

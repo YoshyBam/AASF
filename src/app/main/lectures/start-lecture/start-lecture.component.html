@@ -13,15 +13,31 @@
 
     <div class="input-border">
         <div>
-            <div class="input-text">Start date</div>
-            <div>
-                <input type="text" placeholder="Start time" [(ngModel)]="start">
+            <div class="input-text d-flex">
+                <div style="width: 45%">Start date</div>
+                <div class="flex-grow-1"></div>
+                <div style="width: 45%">Start time</div>
+            </div>
+            <div class="d-flex">
+                <input [matDatepicker]="startPicker" placeholder="Date" (click)="startPicker.open()"  [(ngModel)]="start"> 
+                <mat-datepicker-toggle matSuffix [for]="startPicker" style="display: none;"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker style="display: none;"></mat-datepicker>
+                <div class="flex-grow-1"></div>
+                <input atp-time-picker placeholder="Time" [(ngModel)]="start_time">
             </div>
         </div>
         <div>
-            <div class="input-text" style="padding-top: .75rem">End date</div>
-            <div>
-                <input type="text" placeholder="End time" [(ngModel)]="end">
+            <div class="input-text d-flex" style="padding-top: .75rem">
+                <div style="width: 45%">End date</div>
+                <div class="flex-grow-1"></div>
+                <div style="width: 45%">End time</div>
+            </div>
+            <div class="d-flex">
+                <input [matDatepicker]="endPicker" placeholder="Date" (click)="endPicker.open()"  [(ngModel)]="end"> 
+                <mat-datepicker-toggle matSuffix [for]="endPicker" style="display: none;"></mat-datepicker-toggle>
+                <mat-datepicker #endPicker style="display: none;"></mat-datepicker>
+                <div class="flex-grow-1"></div>
+                <input atp-time-picker placeholder="Time" [(ngModel)]="end_time">
             </div>
         </div>
     </div>

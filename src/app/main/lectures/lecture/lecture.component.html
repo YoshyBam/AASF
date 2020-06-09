@@ -19,7 +19,7 @@
         <div class="class-encasing" (click)="lectureAction($event, i)">
 
             <div class="title">{{ l.checkInCode }}</div>
-            <div class="description">{{ l.startTime + " - " + l.endTime }}</div>
+            <div class="description">{{ l.startTime | date: 'MM/dd  hh:mm' }} {{ " - " }} {{ l.endTime | date: 'MM/dd  hh:mm' }}</div>
             <div class="footer">
                 <div class="circle"> </div>
             </div>

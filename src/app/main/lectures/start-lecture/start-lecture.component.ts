@@ -4,12 +4,10 @@ import { isNullOrUndefined, isNull } from 'util';
 import { Router, ActivatedRoute } from '@angular/router';
 
 //services
-import { classService } from 'src/app/services/subscribers/class.service';
-
-//interfaces
-import { Class } from 'src/app/models/class.interface';
 import { lectureService } from 'src/app/services/subscribers/lecture.service';
 import { authService } from 'src/app/services/auth.service';
+//interfaces
+
 
 @Component({
   selector: 'app-start-lecture',
@@ -21,7 +19,9 @@ export class StartLectureComponent implements OnInit, OnDestroy{
   StartLectureSubscription: Subscription;
 
   start: string = null;
+  start_time: string = null;
   end: string = null;
+  end_time: string = null;
 
   classID: string = null;
 
@@ -31,17 +31,17 @@ export class StartLectureComponent implements OnInit, OnDestroy{
       this.classID = params['class'];
     });
 
-    switch(this.auth.user.role) {
-      case "student" : 
-        break;
-      case "teacher" : 
-        break;
-      case "admin" : 
-        break;
-      default : 
-        this.router.navigate(['/login']);
-        break;
-    }
+    // switch(this.auth.user.role) {
+    //   case "student" : 
+    //     break;
+    //   case "teacher" : 
+    //     break;
+    //   case "admin" : 
+    //     break;
+    //   default : 
+    //     this.router.navigate(['/login']);
+    //     break;
+    // }
 
   }
 
@@ -60,10 +60,29 @@ export class StartLectureComponent implements OnInit, OnDestroy{
     });
   }
 
-  ngOnDestroy() { this.StartLectureSubscription.unsubscribe(); }
+  ngOnDestroy() { 
+    this.StartLectureSubscription.unsubscribe(); 
+  }
 
   submit() {
-    this.lectureService.startLecture(this.classID, { start: this.start, end: this.end } )
+    // console.log(this.format());
+    this.lectureService.startLecture(this.classID, this.format() )
+  }
+
+  format() {
+
+    let temp = new Date(this.start);
+    let s = new Date(temp).toISOString();
+    let st = s.substr(0, s.indexOf('T'));
+    let new_start = st+'T'+this.start_time+':00.000Z';
+
+    temp = new Date(this.end);
+    let e = new Date(temp).toISOString();
+    let en = s.substr(0, e.indexOf('T'));
+    let new_end = en+'T'+this.end_time+':00.000Z';
+
+    return { start: new_start, end: new_end };
+
   }
 
 }
