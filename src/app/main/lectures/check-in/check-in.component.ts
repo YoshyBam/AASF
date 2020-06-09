@@ -1,14 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'util';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 //services
-import { classService } from 'src/app/services/subscribers/class.service';
 
 //interfaces
-import { Class } from 'src/app/models/class.interface';
 import { lectureService } from 'src/app/services/subscribers/lecture.service';
+import { authService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-check-in',
@@ -21,15 +20,32 @@ export class CheckInComponent implements OnInit, OnDestroy{
 
   code: string = null;
   error: string = null;
+  classID: number = null;
 
-  constructor(private lectureService: lectureService, private router: Router) { }
+  constructor(private auth: authService, private lectureService: lectureService, private router: Router, private route: ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.code = params['code'];
+      this.classID = params['class'];
+    });
+    switch(this.auth.user.role) {
+      case "student" : 
+        break;
+      case "teacher" : 
+        break;
+      case "admin" : 
+        break;
+      default : 
+        this.router.navigate(['/login']);
+        break;
+    }
+  }
 
   ngOnInit() {
     this.checkInSubscription = this.lectureService.checkInSubject.subscribe({
       next: (res) => {
         if(isNullOrUndefined(res.error)) {
           
-          this.router.navigate(['/']);
+          this.router.navigate(['/lectures/single'],{ queryParams: { class: this.classID } });
           
         } else {
 

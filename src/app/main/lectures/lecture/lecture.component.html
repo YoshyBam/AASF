@@ -9,7 +9,7 @@
 <div class="row">
 
     <div class="col-12 add-class d-flex justify-content-center align-items-center" *ngIf="show_actions">
-        <div class="add-class-encasing" [routerLink]="['/lecture/start']" [queryParams]="{  }">
+        <div class="add-class-encasing" [routerLink]="['/lectures/start']" [queryParams]="{ class: classID }">
             <div class="class-text">Start Lecture</div>
         </div>
     </div>

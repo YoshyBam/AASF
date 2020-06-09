@@ -32,9 +32,11 @@ import { lectureService } from './services/subscribers/lecture.service';
   imports: [
 
     AppRoutingModule,
+    
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
     FormsModule,
     
   ],

@@ -22,12 +22,10 @@ export class lectureService {
         
     }
 
-    startLecture(class_id: string, lecture_id: string, date: { start, end }) {
-        this.http.post(this.auth.key+"/classes"+lecture_id+"/lectures", {
+    startLecture(class_id: string, date: { start, end }) {
+        this.http.post(this.auth.key+"/classes/"+class_id+"/lectures", {
             endTime: date.end,
             startTime: date.start
-        }, {
-            params: { id: class_id }
         }).subscribe({
             next: (res) => { this.startLectureSubject.next(res); },
             error:  (e) => { this.startLectureSubject.next(e); }

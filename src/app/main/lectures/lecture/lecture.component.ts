@@ -18,9 +18,8 @@ import { Lecture } from 'src/app/models/lecture.interface';
 })
 export class LectureComponent implements OnInit, OnDestroy {
 
-  lectures: Lecture;
+  lectures: Array<Lecture>;
   classID: string = null;
-  lectureID: string = null;
   show_actions: boolean = false;
 
   getLecturesSubscription: Subscription;
@@ -30,7 +29,6 @@ export class LectureComponent implements OnInit, OnDestroy {
     
     this.route.queryParams.subscribe(params => {
       this.classID = params['class'];
-      this.lectureID = params['lecture'];
     });
 
     switch(this.auth.user.role) {
@@ -62,6 +60,7 @@ export class LectureComponent implements OnInit, OnDestroy {
         if(isNullOrUndefined(res.error)) {
 
           console.log(res);
+          this.lectures = new Array<Lecture>();
           this.lectures = res;
 
         } else {
@@ -76,9 +75,22 @@ export class LectureComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.getLecturesSubscription.unsubscribe();
   }
-
   lectureAction(e: { target: HTMLInputElement }, i: number) {
     
+    switch(this.auth.user.role) {
+      case "student" : 
+        this.router.navigate(['/lectures/check-in'], { queryParams: { code: this.lectures[i].checkInCode, class: this.classID }})
+        break;
+      case "teacher" : 
+        break;
+      case "admin" : 
+        break;
+      default : 
+        this.router.navigate(['/login']);
+        break;
+    }
+    
+
   }
   
 
