@@ -1,4 +1,4 @@
-@import "../../../assets/scss-library/colours.scss";
+@import "../../../../assets/scss-library/colours.scss";
 
 * {
     color: $elegant_black;
@@ -75,21 +75,10 @@ input {
 
             width: 20%;
 
-            .fa-edit {
-                color: $cultured;
-                &:hover { color: $xiketic !important; }
-                &:active { color: $xiketic;}
-            }
-            .fa-trash {
-                color: red;
-                &:hover { color: red;}
-                &:active { color: $xiketic !important; }
-            }
-            i {
-                font-weight: 600;
-                font-size: 1.2rem;
+            .circle {
 
-                padding: 0 .75rem;
+                
+
             }
         }
 
@@ -141,17 +130,17 @@ input {
         display: flex;
         justify-content: center;
         align-items: center;
-        i {
+        .class-text {
             font-size: 1.8rem;
             color: $stylish_dark;
         }
         &:hover {
-            i {
+            .class-text {
                 color: $xiketic;
             }
         }
         &:active {
-            i {
+            .class-text {
                 color: $space_cadet;
             }
         }

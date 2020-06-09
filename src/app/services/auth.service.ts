@@ -7,7 +7,7 @@ import { User } from '../models/user.interface';
 @Injectable()
 export class authService {
     
-    public key = "http://dodgers-aas.herokuapp.com/api/v1/";
+    public key = "https://dodgers-aas.herokuapp.com/api/v1/";
 
     access_token: null;
     refresh_token: null;

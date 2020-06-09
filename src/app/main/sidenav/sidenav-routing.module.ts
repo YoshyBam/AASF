@@ -29,6 +29,18 @@ const routes: Routes = [
       {
         path: 'classes/single/add',
         loadChildren: () => import('../add-student/add-student.module').then(m => m.AddStudentModule)
+      },
+      {
+        path: 'lectures',
+        loadChildren: () => import('../lectures/lectures.module').then(m => m.LecturesModule)
+      },
+      {
+        path: 'lectures/single',
+        loadChildren: () => import('../lectures/lecture/lecture.module').then(m => m.LectureModule)
+      },
+      {
+        path: 'lectures/check-in',
+        loadChildren: () => import('../lectures/check-in/check-in.module').then(m => m.CheckInModule)
       }
     ]
   }

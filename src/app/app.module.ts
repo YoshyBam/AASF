@@ -18,7 +18,9 @@ import { OutletComponent } from './outlet/outlet.component';
 import { authService } from './services/auth.service';
 import { classService } from './services/subscribers/class.service';
 import { studentService } from './services/subscribers/student.service';
+import { lectureService } from './services/subscribers/lecture.service';
 
+//other
 
 
 
@@ -45,7 +47,8 @@ import { studentService } from './services/subscribers/student.service';
     authService,
     //routes
     classService,
-    studentService
+    studentService,
+    lectureService,
   ],
   bootstrap: [AppComponent]
 })

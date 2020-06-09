@@ -21,7 +21,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
     if(!isNullOrUndefined(token))
       this.timer = setInterval(() => this.authService.refreshSession(token), 5 * 60 * 1000);
 
-  }
+  } 
 
   timer;
 
