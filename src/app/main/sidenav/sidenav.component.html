@@ -25,31 +25,21 @@
             </h6>
         </div>
         <div class="nav-navigation">
-            <h6 [routerLink]="['/students']">
+            <h6 [routerLink]="['/lectures']">
                 <i class="fas fa-user-graduate nav-icon" style="padding-left: 2px; font-size: 1.45rem;"></i>
-                <h6>Students</h6>
+                <h6>Lectures</h6>
             </h6>
         </div>
-        <div class="nav-navigation">
-            <h6>
-                <i class="fas fa-user-clock nav-icon" style="padding-left: -6px; font-size: 1.45rem; transform: scaleX(0.9);"></i>
-                <h6>Attendance</h6>
-            </h6>
-        </div>
-        <div class="nav-navigation">
-            <h6>
-                <i class="fas fa-calendar-week nav-icon"></i>
-                <h6>Calendar</h6>
-            </h6>
-        </div>
-        <div class="nav-navigation">
-            <h6>
-                <i class="fas fa-bullhorn nav-icon" style="padding-left: -6px; font-size: 1.4rem; transform: scaleX(.9);"></i>
-                <h6>Announcements</h6>
-            </h6>
-        </div>
+
+        
         
         <div class="nav-bottom">
+            <div class="nav-navigation">
+                <h6 (click)="logout()">
+                    <i class="fas fa-sign-out-alt nav-icon" style="padding-left: 2px; font-size: 1.45rem;"></i>
+                    <h6>Logout</h6>
+                </h6>
+            </div>
             <h6 class="d-flex justify-content-start align-items-center"><i class="far fa-question-circle" style="padding-right: .35rem;"></i>help</h6>
         </div>
 
