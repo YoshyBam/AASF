@@ -28,7 +28,7 @@ export class classService {
     constructor(private readonly auth: authService, private http: HttpClient) { }
 
     createClass(name: string, schedule: string) {
-        this.http.post(this.auth.key+"/classes", {
+        this.http.post(this.auth.key+"classes", {
             name: name,
             schedule: schedule
         }).subscribe({ //make proper object

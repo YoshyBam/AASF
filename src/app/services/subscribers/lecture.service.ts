@@ -23,7 +23,7 @@ export class lectureService {
     }
 
     startLecture(class_id: string, date: { start, end }) {
-        this.http.post(this.auth.key+"/classes/"+class_id+"/lectures", {
+        this.http.post(this.auth.key+"classes/"+class_id+"/lectures", {
             endTime: date.end,
             startTime: date.start
         }).subscribe({
@@ -34,7 +34,7 @@ export class lectureService {
 
     checkIn(code: string) {
 
-        this.http.post(this.auth.key+"/lectures/checkin", {}, {
+        this.http.post(this.auth.key+"lectures/checkin", {}, {
             params: {
                 code: code,
                 student: this.auth.user.id.toString()
